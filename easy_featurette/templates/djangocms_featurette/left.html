@@ -1,0 +1,24 @@
+{% for item in instance.featurette_set.all %}
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">
+                {{ item.heading }}
+                {% if item.muted_heading %}
+                    <span class="text-muted">
+                        {{ item.muted_heading }}
+                    </span>
+                {% endif %}
+            </h2>
+            {% if item.lead_text %}
+                <p class="lead">
+                    {{ item.lead_text }}
+                </p>
+            {% endif %}
+        </div>
+        <div class="col-md-5">
+            {% if item.image %}
+                <img class="featurette-image img-responsive center-block" src="{{ item.image.url }}"/>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

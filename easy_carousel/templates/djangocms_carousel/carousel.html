@@ -1,0 +1,86 @@
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<style type="text/css">
+.carousel {
+  margin: auto;
+  {% if instance.width %}
+  max-width: {{ instance.width }}px;
+  {% endif %}
+  {% if  instance.height %}
+  max-height: {{ instance.height }}px;
+  {% endif %}
+}
+
+.carousel-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.carousel-caption p {
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.carousel-caption h4 {
+  margin: 0 0 15px;
+}
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+}
+</style>
+{% endaddtoblock %}
+
+
+<div id="{{ instance.name }}" class="carousel slide" data-ride="carousel">
+  {% if instance.show_indicator %}
+  <ol class="carousel-indicators">
+    {% for item in instance.carouselitem_set.all %}
+    <li data-target="#{{ instance.name }}" data-slide-to="{{ forloop.counter0 }}"
+      {% if forloop.first %}class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+
+  <div class="carousel-inner">
+    {% for item in instance.carouselitem_set.all %}
+    <div class="{% if forloop.first %}active {% endif %}item">
+      {% if item.url %}
+        <a href="{{ item.url }}">
+      {% endif %}
+      {% if item.image %}
+        <img alt="" src="{{ item.image.url }}">
+      {% endif %}
+      {% if item.url %}
+        </a>
+      {% endif %}
+      {% if instance.show_caption or instance.show_title %}
+        <div class="carousel-caption">
+        {% if instance.show_title %}
+          <h4>{{ item.caption_title }}</h4>
+        {% endif %}
+        {% if instance.show_caption %}
+          <p>{{ item.caption_content }}</p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if instance.show_controls %}
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#{{ instance.name }}" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="carousel-control right" href="#{{ instance.name }}" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span></a>
+  {% endif %}
+</div>
