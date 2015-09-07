@@ -77,4 +77,4 @@ class Featurette(models.Model):
                 fname = "%s.%s" % (os.path.splitext(self.image.name)[0], ext)
                 self.image.save(fname, suf, save=False)
 
-            super(Featurette, self).save()
+        super(Featurette, self).save()
