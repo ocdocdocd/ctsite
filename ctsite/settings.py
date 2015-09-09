@@ -148,7 +148,12 @@ INSTALLED_APPS = (
     'reversion',
     'ctsite',
     'easy_carousel',
-    'easy_featurette'
+    'easy_featurette',
+    'easy_accordion',
+    'imagestore',
+    'sorl.thumbnail',
+    'tagging',
+    'imagestore.imagestore_cms',
 )
 
 LANGUAGES = (
@@ -208,3 +213,5 @@ MIGRATION_MODULES = {
     'djangocms_style': 'djangocms_style.migrations_django',
     'djangocms_teaser': 'djangocms_teaser.migrations_django'
 }
+
+IMAGESTORE_SHOW_USER = False

@@ -13,7 +13,9 @@ urlpatterns = i18n_patterns('',
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
     url(r'^select2/', include('django_select2.urls')),
+    url(r'^gallery/', include('imagestore.urls', namespace='imagestore')),
     url(r'^', include('cms.urls')),
+    url(r'^', include('cms.urls', namespace='imagestore')),
 )
 
 # This is only needed when using runserver.

@@ -1,0 +1,36 @@
+{% load sekizai_tags %}
+
+{% if instance.use_glyphs %}
+    {% addtoblock "js" %}
+    <script type="text/javascript">
+        $('.collapse').on('shown.bs.collapse', function(){
+            $(this).parent().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        }).on('hidden.bs.collapse', function(){
+            $(this).parent().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        });
+    </script>
+    {% endaddtoblock %}
+{% endif %}
+
+
+<div class="panel-group" id="{{ instance.name }}accordion" role="tablist" aria-multiselectable="true">
+    {% for item in instance.accordion_set.all %}
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="header{{ forloop.counter }}">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{ instance.name }}accordion" href="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
+                {% if instance.use_glyphs %}
+                    <span class="glyphicon glyphicon-plus"></span>
+                {% endif %}
+                {{ item.title }}
+                </a>
+            </h4>
+        </div>
+        <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="header{{ forloop.counter }}">
+            <div class="panel-body">
+                {{ item.body }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

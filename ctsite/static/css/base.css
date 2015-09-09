@@ -11,6 +11,10 @@
     border: 0px;
 }
 
+.featurette-image {
+    border-radius: 50%;
+}
+
 body {
     color: #5A5A5A;
 }

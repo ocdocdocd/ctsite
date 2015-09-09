@@ -57,7 +57,8 @@ class Featurette(models.Model):
                     ratio = self.featurette.height / float(img.size[1])
                     x = int(ratio * img.size[0])
                 else:
-                    x, y = self.featurette.size()
+                    x = self.featurette.width
+                    y = self.featurette.height
                 img = img.resize((x, y), Image.ANTIALIAS)
 
                 ext = os.path.splitext(self.image.name)[-1][1:]
