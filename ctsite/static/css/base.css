@@ -15,6 +15,10 @@
     border-radius: 50%;
 }
 
+.column {
+    padding: 10px;
+}
+
 body {
     color: #5A5A5A;
 }

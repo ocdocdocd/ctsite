@@ -33,6 +33,12 @@ class FeaturettePlugin(CMSPlugin):
         " calculated to preserve aspect ratio.",
         default=0)
 
+    def copy_relations(self, oldinstance):
+        for item in oldinstance.featurette_set.all():
+            item.pk = None
+            item.featurette = self
+            item.save()
+
 
 class Featurette(models.Model):
     featurette = models.ForeignKey(FeaturettePlugin)

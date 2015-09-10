@@ -48,6 +48,12 @@ class Carousel(CMSPlugin):
     def size(self):
         return (self.width, self.height)
 
+    def copy_relations(self, oldinstance):
+        for item in oldinstance.carouselitem_set.all():
+            item.pk = None
+            item.carousel = self
+            item.save()
+
     def __unicode__(self):
         return self.name
 
