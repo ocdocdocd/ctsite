@@ -1,5 +1,6 @@
 import os
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from cms.models import CMSPlugin
@@ -31,10 +32,15 @@ class Carousel(CMSPlugin):
         help_text="Display slide indicator, if true.",
         default=False)
 
+    fill_width = models.BooleanField(
+        help_text="Makes image take up full width of carousel."
+        " If set to true then height must be provided.",
+        default=False)
+
     width = models.PositiveIntegerField(
         "width",
         help_text="Fixed width in pixels for carousel images."
-        " If left empty and height is given, width will be automatically"
+        " If left empty, width will be automatically"
         " calculated to preserve aspect ratio.",
         default=0)
 
@@ -47,6 +53,11 @@ class Carousel(CMSPlugin):
 
     def size(self):
         return (self.width, self.height)
+
+    def clean(self):
+        if self.fill_width and self.height < 1:
+            raise ValidationError("Fill width has been selected but height"
+                                  " has not been provided!")
 
     def copy_relations(self, oldinstance):
         for item in oldinstance.carouselitem_set.all():

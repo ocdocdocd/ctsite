@@ -12,6 +12,12 @@
   {% endif %}
 }
 
+.carousel-inner {
+    {% if instance.height %}
+    max-height: {{ instance.height }}px;
+    {% endif %}
+}
+
 .carousel-caption {
   position: absolute;
   right: 0;
@@ -32,9 +38,19 @@
   margin: 0 0 15px;
 }
 
+{% if instance.fill_width %}
+.carousel-inner > .item {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: {{ instance.height }}px;
+}
+{% endif %}
+
 .carousel-inner > .item > img {
   margin: 0 auto;
 }
+
 </style>
 {% endaddtoblock %}
 
@@ -51,14 +67,14 @@
 
   <div class="carousel-inner">
     {% for item in instance.carouselitem_set.all %}
-    <div class="{% if forloop.first %}active {% endif %}item">
+    <div class="{% if forloop.first %}active {% endif %}item" {% if instance.fill_width %}style="background-image: url('{{ item.image.url }}');"{% endif %}>
       {% if item.url %}
         <a href="{{ item.url }}">
       {% endif %}
-      {% if item.image %}
-        <img alt="" src="{{ item.image.url }}">
+      {% if not instance.fill_width %}
+        <img src="{{ item.image.url }}">
       {% endif %}
-      {% if item.url %}
+      {% if item.url %}    
         </a>
       {% endif %}
       {% if instance.show_caption or instance.show_title %}

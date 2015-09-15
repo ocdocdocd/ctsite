@@ -19,6 +19,14 @@
     padding: 10px;
 }
 
+.carousel-inner {
+    max-height: 500px;
+}
+
+.carousel-inner > .item > img {
+    width: 100%;
+}
+
 body {
     color: #5A5A5A;
 }
