@@ -19,12 +19,9 @@
     padding: 10px;
 }
 
-.carousel-inner {
-    max-height: 500px;
-}
-
-.carousel-inner > .item > img {
-    width: 100%;
+#rules {
+    line-height: 30px;
+    font-size: 18px;
 }
 
 body {
