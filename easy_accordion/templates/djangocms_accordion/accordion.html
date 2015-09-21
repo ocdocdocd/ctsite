@@ -16,9 +16,9 @@
 <div class="panel-group" id="{{ instance.name }}accordion" role="tablist" aria-multiselectable="true">
     {% for item in instance.accordion_set.all %}
     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="header{{ forloop.counter }}">
+        <div class="panel-heading" role="tab" id="{{ instance.name }}header{{ forloop.counter }}">
             <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{ instance.name }}accordion" href="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{{ instance.name }}accordion" href="#{{ instance.name }}collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="{{ instance.name }}collapse{{ forloop.counter }}">
                 {% if instance.use_glyphs %}
                     <span class="glyphicon glyphicon-plus"></span>
                 {% endif %}
@@ -26,7 +26,7 @@
                 </a>
             </h4>
         </div>
-        <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="header{{ forloop.counter }}">
+        <div id="{{ instance.name }}collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ instance.name }}header{{ forloop.counter }}">
             <div class="panel-body">
                 {{ item.body }}
             </div>

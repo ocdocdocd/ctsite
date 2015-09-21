@@ -19,6 +19,36 @@
     padding: 10px;
 }
 
+.album {
+    padding: 10px 0 40px 100px;
+}
+
+.album-name {
+    font-size: 18px;
+}
+
+.image-preview {
+    padding: 10px 0 40px 100px;
+}
+
+.image-preview > a > span {
+    font-size: 18px;
+}
+
+.thumb {
+    padding-bottom: 10px;
+}
+
+.plugin_picture > img {
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.column > div > p {
+    margin-top: 20px;
+}
+
 #rules {
     line-height: 30px;
     font-size: 18px;
