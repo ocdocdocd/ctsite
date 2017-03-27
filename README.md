@@ -3,7 +3,7 @@
 * pip
 * virtualenv highly recommended
 
-#Install
+# Install
 
 1. Clone the repository
 2. Navigate to the directory 
